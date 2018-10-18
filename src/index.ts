@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fetch from 'node-fetch'
+import * as fs from 'fs';
 import { introspectionQuery } from 'graphql/utilities/introspectionQuery'
 import { buildClientSchema } from 'graphql/utilities/buildClientSchema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
