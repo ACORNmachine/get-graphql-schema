@@ -9,6 +9,7 @@
   "description": "Downloads the GraphQL Schema of an GraphQL endpoint URL",
   "scripts": {
     "build": "tsc",
+    "postinstall": "npm run build && chmod +x dist/index.js",
     "prepublish": "npm run build && chmod +x dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
