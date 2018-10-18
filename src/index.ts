@@ -34,7 +34,7 @@ async function main() {
     console.log(version)
     process.exit(0)
   }
-
+  const CERT_PATH = argsv['cert_path'] || 'nginx/certs/server'
   const endpoint = argv._[0]
 
   const defaultHeaders = {
@@ -48,11 +48,18 @@ async function main() {
       obj[key] = value
       return obj
     }, defaultHeaders)
-
+  
+  const agent = new https.Agent({
+    key: fs.readFileSync(`${CERT_PATH}.key`),
+    cert: fs.readFileSync(`${CERT_PATH}.crt`),
+    rejectUnauthorized: false
+  })
+  
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({ query: introspectionQuery }),
+    agent
   })
 
   const { data, errors } = await response.json()
