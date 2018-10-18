@@ -2,6 +2,7 @@
 
 import fetch from 'node-fetch'
 import * as fs from 'fs';
+import * as https from 'https';
 import { introspectionQuery } from 'graphql/utilities/introspectionQuery'
 import { buildClientSchema } from 'graphql/utilities/buildClientSchema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
@@ -35,7 +36,7 @@ async function main() {
     console.log(version)
     process.exit(0)
   }
-  const CERT_PATH = argsv['cert_path'] || 'nginx/certs/server'
+  const CERT_PATH = argv['cert_path'] || 'nginx/certs/server'
   const endpoint = argv._[0]
 
   const defaultHeaders = {
